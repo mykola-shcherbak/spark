@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:spark_test/bloc/tasks_list_cubit.dart';
 import 'package:spark_test/constants/color_constants.dart';
 import 'package:spark_test/constants/text_constants.dart';
-import 'package:spark_test/screens/result_screen.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:spark_test/widgets.dart/custom_app_bar.dart';
 import 'package:spark_test/widgets.dart/custom_button.dart';
