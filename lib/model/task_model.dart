@@ -15,8 +15,22 @@ class Task {
     this.path,
   });
 
-  Task setSteps({required List<Coordinates> newSteps}) {
-    return Task(id: id, field: field, start: start, end: end, steps: newSteps);
+  Task copyWith({
+    String? id,
+    List<String>? field,
+    Coordinates? start,
+    Coordinates? end,
+    List<Coordinates>? steps,
+    String? path,
+  }) {
+    return Task(
+      id: id ?? this.id,
+      field: field ?? this.field,
+      start: start ?? this.start,
+      end: end ?? this.end,
+      steps: steps ?? this.steps,
+      path: path ?? this.path,
+    );
   }
 
   factory Task.fromJson(Map<String, dynamic> json) => Task(

@@ -5,18 +5,24 @@ class TasksListState {
   Task selectedTask;
   bool isSolved;
   String link;
+  bool isLoaded;
+  double loadingProcess;
 
   TasksListState copyWith({
     List<Task>? tasksList,
     Task? selectedTask,
     bool? isSolved,
     String? link,
+    bool? isLoaded,
+    double? loadingProcess,
   }) {
     return TasksListState(
       tasksList: tasksList ?? this.tasksList,
       selectedTask: selectedTask ?? this.selectedTask,
       isSolved: isSolved ?? this.isSolved,
       link: link ?? this.link,
+      isLoaded: isLoaded ?? this.isLoaded,
+      loadingProcess: loadingProcess ?? this.loadingProcess,
     );
   }
 
@@ -25,6 +31,8 @@ class TasksListState {
     required this.isSolved,
     required this.selectedTask,
     required this.link,
+    required this.isLoaded,
+    required this.loadingProcess,
   });
 }
 
@@ -46,5 +54,7 @@ class InitialTasksListState extends TasksListState {
           selectedTask: InitialTaskState(),
           isSolved: false,
           link: TaskApiClient.getRequestUrl,
+          isLoaded: false,
+          loadingProcess: 0,
         );
 }

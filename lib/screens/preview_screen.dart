@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:spark_test/bloc/tasks_list_cubit.dart';
 import 'package:spark_test/constants/text_constants.dart';
 import 'package:spark_test/model/task_model.dart';
-import 'package:spark_test/utils/task_solution_utills.dart';
 import 'package:spark_test/widgets.dart/custom_app_bar.dart';
 import 'package:spark_test/widgets.dart/custom_table_cell.dart';
 import 'package:collection/collection.dart';
@@ -26,16 +25,7 @@ class PreviewScreen extends StatelessWidget {
           final List<Coordinates> steps = selectedTask.steps ?? [];
           final Coordinates startPosition = selectedTask.start;
           final Coordinates endPosition = selectedTask.end;
-
-          // final String path = testTask.path ?? '';
-          // // final Task selectedTask = testTask;
-          // final Task test = testTask;
-          // final List<String> field = testTask.field;
-          // final List<Coordinates> steps = testTask.steps ?? [];
-          // final Coordinates startPosition = testTask.start;
-          // final Coordinates endPosition = testTask.end;
-
-          // final String path = selectedTask.path ?? '';
+          final String stepsText = selectedTask.path ?? '';
 
           return Column(
             children: [
@@ -48,13 +38,13 @@ class PreviewScreen extends StatelessWidget {
                       final Coordinates currentPosition =
                           Coordinates(indexX, indexY);
 
-                      return CustomTableCell(
-                        height: height,
-                        value: cell,
-                        currentPosition: currentPosition,
-                        startPosition: startPosition,
-                        endPosition: endPosition,
-                        steps: steps,
+                      return customTableCell(
+                        height,
+                        cell,
+                        currentPosition,
+                        startPosition,
+                        endPosition,
+                        steps,
                       );
                     }).toList(),
                   );
@@ -62,15 +52,9 @@ class PreviewScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                path,
+                stepsText,
                 style: const TextStyle(fontSize: 18),
               ),
-              IconButton(
-                  onPressed: () {
-                    // solveTask(test);
-                    solveTask(selectedTask);
-                  },
-                  icon: const Icon(Icons.add))
             ],
           );
         },

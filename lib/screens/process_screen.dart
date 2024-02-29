@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spark_test/bloc/tasks_list_cubit.dart';
@@ -28,7 +27,7 @@ class ProcessScreen extends StatelessWidget {
         appBar: appBar(context, TextConstants.processScreen, context.pop),
         body: BlocBuilder<TasksListCubit, TasksListState>(
           builder: (context, state) {
-            final double percent = 1;
+            final double percent = state.loadingProcess;
             final percenttext = '${percent * 100} %';
 
             return Container(
@@ -70,7 +69,8 @@ class ProcessScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  customButton(TextConstants.sendResult, onPressed)
+                  customButton(TextConstants.sendResult,
+                      state.isLoaded ? onPressed : null)
                 ],
               ),
             );

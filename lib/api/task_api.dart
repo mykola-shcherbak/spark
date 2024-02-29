@@ -14,15 +14,9 @@ class TaskApiClient {
   static const String postRequestUrl = '$baseUrl$post$endpoint';
 
   Future<dynamic> getTasks(String link) async {
-    // Map<String, String> queryParameters = {'param1': '1', 'param2': '2'};
-    // String queryString = Uri(queryParameters: queryParams).query;
-
-// var requestUrl = endpointUrl + '?' + queryString; // result - https://www.myurl.com/api/v1/user?param1=1&param2=2
-
     final uri = Uri.parse(link);
     final Map<String, String> queryParameters = uri.queryParameters;
 
-    print('URI: ${uri.queryParameters}');
     final Response response = await http.get(uri, headers: queryParameters);
 
     if (response.statusCode != 200) {
@@ -36,18 +30,13 @@ class TaskApiClient {
 
   Future<void> postSolution(List<Task> tasksList) async {
     List<dynamic> params = tasksList.map((task) => getPerams(task)).toList();
-    print('DATA: $params');
 
     final Uri url = Uri.parse(postRequestUrl);
-    print('Uri: $url');
     try {
-      print('try:');
       final Response response = await http.post(url, body: jsonEncode(params));
-      if (response.statusCode == 200) {
-        print('200');
-      }
+      if (response.statusCode == 200) {}
     } catch (e) {
-      print('ERRROR: $e');
+      throw HTTPException(e.hashCode, "unable to post tasks solution");
     }
   }
 }

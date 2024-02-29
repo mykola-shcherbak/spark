@@ -12,11 +12,17 @@ class TasksListCubit extends Cubit<TasksListState> {
   final TaskRepository repository;
 
   Future<void> getTasks(String link) async {
+    emit(state.copyWith(loadingProcess: 0.2));
     final List<Task> tasksList = await repository.getTasks(link);
+    emit(state.copyWith(loadingProcess: 0.4));
     final List<Task> solvedTasksList =
         tasksList.map((task) => solveTask(task)).toList();
 
-    emit(state.copyWith(tasksList: solvedTasksList, link: link));
+    emit(state.copyWith(
+        tasksList: solvedTasksList,
+        link: link,
+        isLoaded: true,
+        loadingProcess: 1));
   }
 
   Future<void> selectTask(Task task) async {
