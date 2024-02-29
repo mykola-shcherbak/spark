@@ -28,7 +28,7 @@ class ProcessScreen extends StatelessWidget {
         body: BlocBuilder<TasksListCubit, TasksListState>(
           builder: (context, state) {
             final double percent = state.loadingProcess;
-            final percenttext = '${percent * 100} %';
+            final percentText = '${percent * 100} %';
 
             return Container(
               padding: const EdgeInsets.all(10),
@@ -60,7 +60,7 @@ class ProcessScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              percenttext,
+                              percentText,
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20.0),
                             ),

@@ -2,8 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:spark_test/model/task_model.dart';
 
 Task solveTask(Task task) {
-  Task solvedTask = task;
-
   final List<int> start = coorditateToList(task.start);
   final List<int> end = coorditateToList(task.end);
   final List<List<int>> freeCells =
@@ -76,7 +74,7 @@ Task solveTask(Task task) {
   final List<Coordinates> solvedSteps = stepsListCoordinate(steps);
   final String path = stepsToString(steps);
 
-  return solvedTask.copyWith(steps: solvedSteps, path: path);
+  return task.copyWith(steps: solvedSteps, path: path);
 }
 
 List<int> coorditateToList(Coordinates coordinate) {

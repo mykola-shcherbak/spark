@@ -6,7 +6,6 @@ import 'package:spark_test/model/task_model.dart';
 class TaskApiClient {
   static const baseUrl = 'https://flutter.webspark.dev/';
   static const endpoint = '/flutter/api';
-  static const get = 'get';
   static const post = 'post';
 
   static const String getRequestUrl =
