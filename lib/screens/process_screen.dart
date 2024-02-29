@@ -18,8 +18,7 @@ class ProcessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void onPressed() {
-      context.push(ResultScreen.path);
-      context.read<TasksListCubit>().postSolution();
+      context.read<TasksListCubit>().postSolution(context);
     }
 
     return SafeArea(
@@ -70,7 +69,7 @@ class ProcessScreen extends StatelessWidget {
                     ),
                   ),
                   customButton(TextConstants.sendResult,
-                      state.isLoaded ? onPressed : null)
+                      state.isLoading ? null : onPressed)
                 ],
               ),
             );
