@@ -12,9 +12,19 @@ Task solveTask(Task task) {
   List<int> currentPostion = [...start];
   final List<List<int>> steps = [start];
 
+  void stepBack(List<int> cur) {
+    freeCells.removeWhere((e) => listEquals(e, cur));
+  }
+
   List<List<int>> findStep(List<int> cur) {
-    List<List<int>> list = [...freeCells];
-    List<List<int>> newList = [cur];
+    List<List<int>> newList = [];
+    for (var e in freeCells) {
+      if ((cur[0] >= e[0] - 1 && cur[0] <= e[0] + 1) &&
+          (cur[1] >= e[1] - 1 && cur[1] <= e[1] + 1) &&
+          !listEquals(cur, e)) {
+        newList.add(e);
+      }
+    }
     return newList;
   }
 
@@ -30,6 +40,7 @@ Task solveTask(Task task) {
       return [cur[0] + x, cur[1]];
     } else {
       field = findStep(cur);
+      stepBack(cur);
       return field[0];
     }
   }
